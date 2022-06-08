@@ -1,25 +1,30 @@
-import { createFighters } from './components/fightersView';
-import { fighterService } from './services/fightersService';
+import {createFighters} from './components/fightersView';
+import {fighterService} from './services/fightersService';
 
 class App {
-  static rootElement = document.getElementById('root');
-  static loadingElement = document.getElementById('loading-overlay');
+    static rootElement = document.getElementById('root');
+    static loadingElement = document.getElementById('loading-overlay');
 
-  static async startApp() {
-    try {
-      App.loadingElement.style.visibility = 'visible';
+    static async startApp() {
+        try {
+            App.loadingElement.style.visibility = 'visible';
 
-      const fighters = await fighterService.getFighters();
-      const fightersElement = createFighters(fighters);
+            const fighters = await fighterService.getFighters();
+            const fightersElement = createFighters(fighters);
 
-      App.rootElement.appendChild(fightersElement);
-    } catch (error) {
-      console.warn(error);
-      App.rootElement.innerText = 'Failed to load data';
-    } finally {
-      App.loadingElement.style.visibility = 'hidden';
+            App.rootElement.appendChild(fightersElement);
+        } catch (error) {
+            console.warn(error);
+            App.rootElement.innerText = 'Failed to load data';
+        } finally {
+            App.loadingElement.style.visibility = 'hidden';
+        }
     }
-  }
+
+    static restartApp() {
+        this.rootElement.innerText = '';
+        this.startApp().then(() => console.log('Game has been restarted'));
+    }
 }
 
 export default App;
