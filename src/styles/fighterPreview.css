@@ -11,3 +11,16 @@
 .fighter-preview___left {
   align-items: flex-start;
 }
+
+/* style aligned with fighters___fighter */
+.fighter-preview___info {
+  height: 350px;
+  width: 150px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  background: #ffdfa7;
+  margin: 10px;
+  border: 5px solid #ca9650;
+}
